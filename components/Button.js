@@ -3,17 +3,26 @@ import styled, {css} from "styled-components";
 export const ButtonStyle = css`
     
     border: 0;
-    padding: 5px 15px;
+    padding: 5px 10px ;
+    
     border-radius: 5px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     font-family: 'Roboto', sans-serif;
+    
 
     svg{
         height: 16px;
         margin-right: 5px;
     }
+
+    ${props => props.$plusminus && css`
+        width:
+        padding: auto;
+        width: auto;
+`}
+
 
     ${props => props.$block && css`
         display: block;
@@ -34,7 +43,6 @@ export const ButtonStyle = css`
     ${props => props.$primary && css`
         background-color: #5542F6;
         color: #fff;
-        border: 1px solid #5542F6;
     `}
 
     ${props => props.size === 'l' && css`

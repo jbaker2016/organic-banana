@@ -7,7 +7,6 @@ import Hamburger from "./icons/Hamburger";
 
 const StyledHeader = styled.header`
     background-color: #222;
-    padding
 `;
 
 const Logo = styled(Link)`
@@ -26,7 +25,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 0 0;
 `;
 
 const NavLink = styled(Link)`
@@ -37,14 +36,10 @@ const NavLink = styled(Link)`
 
 const StyledNav = styled.nav`
 
-    ${props => props.$mobileNavActive ? `display: block;` : `display: none;` }
     gap: 15px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 100px 20px;
+    position: static;
+    display: flex;
+    padding: 200;
     background-color: #222;
 
     @media screen and (min-width: 768px){
@@ -57,20 +52,6 @@ const StyledNav = styled.nav`
 const LogoSVG = styled.img`
     height: 60px;
 
-`;
-const NavButton = styled.button`
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
-    color: white;
-    border: 0px;
-    
-    position: relative;
-    z-index: 3;
-
-    @media screen and (min-width: 768px){
-        display: none;
-    }
 `;
 
 export default function Header() {
@@ -93,9 +74,6 @@ export default function Header() {
                         <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
                     </StyledNav>
 
-                    <NavButton onClick={() => setMobileNavActive(prev => !prev)}> 
-                        <Hamburger></Hamburger>
-                    </NavButton>
                 </Wrapper>
             </Center>
         </StyledHeader>

@@ -31,8 +31,8 @@ const Box = styled.div`
 const ProductInfoCell = styled.td`
 
     img{
-        max-width: 100px;
-        max-height: 100px;
+        max-width: 80px;
+        max-height: 80px;
         margin: 10px;
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
     }
@@ -168,13 +168,11 @@ export default function CartPage() {
                                                 </ProductInfoCell>
                                                 <td>
                                                     <QuantityDiv>
-                                                        <Button 
-                                                            onClick={() => lessOfThisProduct(product._id)}>
-                                                                -
+                                                        <Button $primary $plusminus onClick={() => lessOfThisProduct(product._id)}>
+                                                            -
                                                         </Button>
                                                         <QuantityLabel>{cartProducts.filter(id => id === product._id).length}</QuantityLabel>
-                                                        <Button 
-                                                            onClick={() => moreOfThisProduct(product._id)}>
+                                                        <Button $primary $plusminus onClick={() => moreOfThisProduct(product._id)}>
                                                             +
                                                         </Button>
                                                     </QuantityDiv>
