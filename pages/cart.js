@@ -39,11 +39,13 @@ const ProductInfoCell = styled.td`
 `;
 
 const QuantityDiv = styled.div`
-    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0 20px;
 `;
 const QuantityLabel = styled.span`
-    padding: 0 5px;
+    padding: 4px 5px;
 `;
 
 const CityHolder = styled.div`
@@ -168,12 +170,12 @@ export default function CartPage() {
                                                 </ProductInfoCell>
                                                 <td>
                                                     <QuantityDiv>
-                                                        <Button $plusminus onClick={() => lessOfThisProduct(product._id)}>
-                                                            -
+                                                        <Button $primary $plusminus onClick={() => moreOfThisProduct(product._id)}>
+                                                            ∧
                                                         </Button>
                                                         <QuantityLabel>{cartProducts.filter(id => id === product._id).length}</QuantityLabel>
-                                                        <Button $plusminus onClick={() => moreOfThisProduct(product._id)}>
-                                                            +
+                                                        <Button $primary $plusminus onClick={() => lessOfThisProduct(product._id)}>
+                                                            ∨
                                                         </Button>
                                                     </QuantityDiv>
         

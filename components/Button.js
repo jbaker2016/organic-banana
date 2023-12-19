@@ -4,6 +4,7 @@ export const ButtonStyle = css`
     
     border: 0;
     padding: 5px 8px ;
+
     
     border-radius: 5px;
     cursor: pointer;
@@ -18,7 +19,7 @@ export const ButtonStyle = css`
     }
 
     ${props => props.$plusminus && css`
-        width: 50px
+        width: 15px
         padding: auto;
 `}
 
