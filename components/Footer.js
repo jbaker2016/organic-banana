@@ -9,7 +9,6 @@ const StyledHeader = styled.header`
 const Copyright = styled.div`
     text-align: center;  
     color: #aaa;
-    width: 100%;
     padding: 5px;
     font-size: small;
     margin-bottom: 10px;
@@ -25,7 +24,6 @@ const SocialsWrapper = styled.div`
     margin-top: 30px;
     margin-bottom: 20px;
     
-    display: flex;
     text-align: center;  
 
     color: #aaa;
@@ -40,6 +38,7 @@ const SocialsWrapper = styled.div`
 const SocialLink = styled(Link)`
     color: #aaa;
     text-decoration: none;
+    padding: 10px 20px;
 `;
 
 const Hr = styled.hr`
@@ -74,7 +73,6 @@ export default function Footer() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.0" stroke="currentColor" data-slot="icon" width="30" height="30">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
-
                 </SocialLink>
 
                 <SocialLink href={'/'}>
