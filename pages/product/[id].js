@@ -138,7 +138,7 @@ export default function ProductPage({product}){
                                 <tr key={property}>
                                     <td>{property}</td>
                                     <td>
-                                    {properties[property]}"
+                                    {properties[property]}
                                     </td>
                                 </tr>))}
                             </tbody>
