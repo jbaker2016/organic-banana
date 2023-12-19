@@ -21,7 +21,7 @@ export const ButtonStyle = css`
     ${props => props.$plusminus && css`
         width: 15px
         padding: auto;
-`}
+    `}
 
 
     ${props => props.$block && css`

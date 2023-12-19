@@ -89,11 +89,21 @@ const ImgLargeDiv = styled.div`
     top: 0;
     left: 0;
     z-index: 100;
-    background: #fff;
+    background: #EEEEEE;
     width: 100%;
     height: 100%;
+
     
     img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: contain;
+        border: 3px solid #fff;
+        
     }
 `;
 
