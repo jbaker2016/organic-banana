@@ -8,6 +8,7 @@ import { Product } from "@/models/Product";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import Footer from "@/components/Footer";
+import Table from "@/components/Table";
 
 const Title = styled.h1`
     font-size: 1.5rem;
@@ -98,8 +99,7 @@ export default function ProductPage({product}){
         }
     }
 
-    
-    console.log(product._id)
+    const properties = product.properties || 0;
 
 
     return(
@@ -126,7 +126,26 @@ export default function ProductPage({product}){
                     </WhiteBox>
                     <div>
                         <Title>{product.title}</Title>
+                        {Object.keys(properties)?.length > 0 && (<Table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Object.keys(properties).map((property) => (
+                                <tr key={property}>
+                                    <td>{property}</td>
+                                    <td>
+                                    {properties[property]}"
+                                    </td>
+                                </tr>))}
+                            </tbody>
+                        </Table>)}
                         <p>{product.description}</p>
+                    
+
                         <PriceRow>
                             <Price>${product.price}</Price>
                             <div><Button $primary onClick={() => addProduct(product._id)}><CartIcon /></Button></div>

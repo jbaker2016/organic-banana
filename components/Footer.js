@@ -9,9 +9,7 @@ const StyledHeader = styled.header`
 const Copyright = styled.div`
     text-align: center;  
     color: #aaa;
-    padding: 5px;
     font-size: small;
-    margin-bottom: 10px;
 `;
 
 
