@@ -1,3 +1,5 @@
+
+
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/Cart";
 import { CartContext } from "@/components/CartContext";
@@ -6,9 +8,10 @@ import Header from "@/components/Header";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { useContext, useState } from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import Footer from "@/components/Footer";
 import Table from "@/components/Table";
+
 
 const Title = styled.h1`
     font-size: 1.5rem;
@@ -57,7 +60,6 @@ const ImageDiv = styled.div`
         max-width: 100%;
         max-height: 600px;
     }
-
 `;
 
 const SelectorDiv = styled.div`
@@ -69,16 +71,40 @@ const SelectorDiv = styled.div`
 `;
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 `;
 
+const ImgButton = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    
+`;
+
+const ImgLargeDiv = styled.div`
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+`;
 
 
 export default function ProductPage({product}){
 
     const [imgIndex, setImgIndex] = useState(0);
+
+    const [imgLarge, setImgLarge] = useState(false);
 
     const {addProduct} = useContext(CartContext);
 
@@ -101,9 +127,12 @@ export default function ProductPage({product}){
 
     const properties = product.properties || 0;
 
-
     return(
+        
         <Container>  
+            
+            {imgLarge && (<ImgButton onClick={() => setImgLarge(false)}><ImgLargeDiv><img src={product.images[imgIndex]} alt="" /></ImgLargeDiv></ImgButton>)}
+            
             <Header />
 
             <Center>
@@ -122,7 +151,7 @@ export default function ProductPage({product}){
                                 </svg>
                             </Button>
                         </SelectorDiv>
-                        <ImageDiv><img src={product.images[imgIndex]} alt="" /></ImageDiv>
+                        <ImgButton onClick={() => setImgLarge(true)}><ImageDiv><img src={product.images[imgIndex]} alt="" /></ImageDiv></ImgButton>
                     </WhiteBox>
                     <div>
                         <Title>{product.title}</Title>
