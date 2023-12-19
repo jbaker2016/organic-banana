@@ -168,11 +168,11 @@ export default function CartPage() {
                                                 </ProductInfoCell>
                                                 <td>
                                                     <QuantityDiv>
-                                                        <Button $primary $plusminus onClick={() => lessOfThisProduct(product._id)}>
+                                                        <Button $plusminus onClick={() => lessOfThisProduct(product._id)}>
                                                             -
                                                         </Button>
                                                         <QuantityLabel>{cartProducts.filter(id => id === product._id).length}</QuantityLabel>
-                                                        <Button $primary $plusminus onClick={() => moreOfThisProduct(product._id)}>
+                                                        <Button $plusminus onClick={() => moreOfThisProduct(product._id)}>
                                                             +
                                                         </Button>
                                                     </QuantityDiv>
