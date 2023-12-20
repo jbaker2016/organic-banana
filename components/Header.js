@@ -68,7 +68,7 @@ export default function Header() {
                     </Logo>
                     <StyledNav $mobileNavActive={mobileNavActive}>
                         <NavLink href={'/'}>Home</NavLink>
-                        <NavLink href={'/products'}>Products</NavLink>
+                        <NavLink href={'/gallery'}>Gallery</NavLink>
                     {/*    <NavLink href={'/categories'}>Categories</NavLink> */}
                     {/*    <NavLink href={'/account'}>Account</NavLink> */}
                         <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>

@@ -7,10 +7,11 @@ import Center from "@/components/Center";
 import Header from "@/components/Header";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled, {css} from "styled-components";
 import Footer from "@/components/Footer";
 import Table from "@/components/Table";
+import Popup from "@/components/Popup";
 
 
 const Title = styled.h1`
@@ -111,12 +112,12 @@ const ImgLargeDiv = styled.div`
 export default function ProductPage({product}){
 
     const [imgIndex, setImgIndex] = useState(0);
-
     const [imgLarge, setImgLarge] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     const {addProduct} = useContext(CartContext);
 
-    function increaseImgIndex () {
+    function increaseImgIndex() {
 
         if (imgIndex == product.images.length - 1) {
             setImgIndex(0);
@@ -125,13 +126,25 @@ export default function ProductPage({product}){
         }
     }
 
-    function decreaseImgIndex () {
+    function decreaseImgIndex() {
         if (imgIndex == 0) {
             setImgIndex(product.images.length - 1);
         } else{
             setImgIndex(imgIndex-1);
         }
     }
+
+    function addToCart() {
+        setShowPopup(true);
+        addProduct(product._id);
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowPopup(false)
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [showPopup]);
 
     const properties = product.properties || 0;
 
@@ -140,7 +153,7 @@ export default function ProductPage({product}){
         <Container>  
             
             {imgLarge && (<ImgButton onClick={() => setImgLarge(false)}><ImgLargeDiv><img src={product.images[imgIndex]} alt="" /></ImgLargeDiv></ImgButton>)}
-            
+            {showPopup && <Popup />}
             <Header />
 
             <Center>
@@ -185,7 +198,7 @@ export default function ProductPage({product}){
 
                         <PriceRow>
                             <Price>${product.price}</Price>
-                            <div><Button $primary onClick={() => addProduct(product._id)}><CartIcon /></Button></div>
+                            <div><Button $primary onClick={() => addToCart()}><CartIcon /></Button></div>
                         </PriceRow>
                     </div>
                 </ColWrapper>

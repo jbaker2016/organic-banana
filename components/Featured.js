@@ -3,8 +3,9 @@ import Center from "./Center"
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/Cart";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
+import Popup from "./Popup";
 
 const Bg = styled.div`
     background-color: #222;
@@ -71,34 +72,48 @@ const ButtonsWrapper = styled.div`
 export default function Featured({product}) {
 
     const {addProduct} = useContext(CartContext);
+    const [showPopup, setShowPopup] = useState(false);
 
     function addFeaturedToCart() {
         addProduct(product._id)
     }
+    
+    
+    function addToCart() {
+        setShowPopup(true);
+        addProduct(product._id);
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowPopup(false)
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [showPopup]);
+
 
     return(
         <Bg>
             <Center>
-
-            <ColumnsWrapper>
-                <Column>
-                    <div>
-                        <Title>Featured: {product.title}</Title>
-                        <Desc>{product.description}</Desc>
-                        <ButtonsWrapper>
-                            <ButtonLink href={'/product/'+product._id} $white>Read more</ButtonLink>
-                            <Button $primary onClick={addFeaturedToCart}>
-                                <CartIcon />
-                                Add to cart
-                            </Button>
-                        </ButtonsWrapper>
-                    </div> 
-                </Column>
-                <Column>
-                    <img src="https://ecommerce-project-nextjs.s3.amazonaws.com/1702699905202.png"/>
-                </Column>
-            </ColumnsWrapper>
-                
+                {showPopup && <Popup />}
+                <ColumnsWrapper>
+                    <Column>
+                        <div>
+                            <Title>Featured: {product.title}</Title>
+                            <Desc>{product.description}</Desc>
+                            <ButtonsWrapper>
+                                <ButtonLink href={'/product/'+product._id} $white>Read more</ButtonLink>
+                                <Button $primary onClick={() => addToCart()}>
+                                    <CartIcon />
+                                    Add to cart
+                                </Button>
+                            </ButtonsWrapper>
+                        </div> 
+                    </Column>
+                    <Column>
+                        <img src="https://ecommerce-project-nextjs.s3.amazonaws.com/1702699905202.png"/>
+                    </Column>
+                </ColumnsWrapper>
             </Center>
         </Bg>
     )

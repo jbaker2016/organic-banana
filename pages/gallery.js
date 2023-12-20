@@ -26,7 +26,7 @@ flex-direction: column;
 min-height: 100vh;
 `;
 
-export default function ProductsPage({products}) {
+export default function Gallery({products}) {
 
 
 
@@ -35,7 +35,7 @@ export default function ProductsPage({products}) {
 
             <Header />
             <Center>
-                <Title>All products</Title>
+                <Title>Gallery</Title>
                 
                 <ProductsGrid>
                 {products?.length > 0 && products.map(product => (

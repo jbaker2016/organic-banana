@@ -2,8 +2,9 @@ import styled from "styled-components"
 import Button from "./Button";
 import CartIcon from "./icons/Cart";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
+import Popup from "./Popup";
 
 const ProductWrapper = styled.div`
 
@@ -58,18 +59,32 @@ const Price = styled.div`
 `;
 
 export default function ProductBox({_id, title, description, price, images}){
-    const {addProduct} = useContext(CartContext)
+    const {addProduct} = useContext(CartContext);
+    const [showPopup, setShowPopup] = useState(false);
     const url = '/product/'+_id;
+
+    function addToCart() {
+        setShowPopup(true);
+        addProduct(_id);
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowPopup(false)
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [showPopup]);
     
     return(
         <ProductWrapper>
+            {showPopup && <Popup />}
             <WhiteBox>
                 <Title href={url}>{title}</Title>
                 <Link href={url}><ImageDiv><img src={images[0]} alt="" /></ImageDiv></Link>
                 <div>
                     <PriceRow>
                         <Price>${price}</Price>
-                        <div><Button $primary onClick={() => addProduct(_id)}><CartIcon /></Button></div>
+                        <div><Button $primary onClick={() => addToCart()}><CartIcon /></Button></div>
                     </PriceRow>
                 </div>
             </WhiteBox>
