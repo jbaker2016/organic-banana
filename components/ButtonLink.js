@@ -5,7 +5,7 @@ import { ButtonStyle } from "./Button";
 const StyledLink = styled(Link)`
     ${ButtonStyle};
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 `;
 
 export default function ButtonLink(props) {

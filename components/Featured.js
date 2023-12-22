@@ -69,6 +69,7 @@ const ButtonsWrapper = styled.div`
     margin-top: 25px;
 `
 
+
 export default function Featured({product}) {
 
     const {addProduct} = useContext(CartContext);
