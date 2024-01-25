@@ -83,8 +83,8 @@ export default function Footer() {
 
             </SocialsWrapper>
                 <Hr/>
-                <Copyright>Developed By <DevLink href={'https://www.google.com/'}>JB Web Designs</DevLink> <br />
-                Copyright © 2023</Copyright>
+                <Copyright>Developed By <DevLink href={'https://www.google.com/'}>Elephant Edge Web Designs</DevLink> <br />
+                Copyright © 2024</Copyright>
             </Center>
         </StyledHeader>
     )

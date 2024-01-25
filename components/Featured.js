@@ -2,7 +2,6 @@ import styled from "styled-components"
 import Center from "./Center"
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
-import CartIcon from "./icons/Cart";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import Popup from "./Popup";
@@ -68,6 +67,18 @@ const ButtonsWrapper = styled.div`
     gap: 10px;
     margin-top: 25px;
 `
+const Soldout = styled.span`
+    display: inline-flex;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin: 0;
+
+    text-decoration: none;
+    color: white;
+    background: red;
+    padding: 6px 8px;
+    border-radius: 5px;
+`;
 
 
 export default function Featured({product}) {
@@ -90,9 +101,8 @@ export default function Featured({product}) {
             setShowPopup(false)
         }, 1000);
         return () => clearTimeout(timer);
-      }, [showPopup]);
-
-
+    }, [showPopup]);
+    
     return(
         <Bg>
             <Center>
@@ -104,15 +114,12 @@ export default function Featured({product}) {
                             <Desc>{product.description}</Desc>
                             <ButtonsWrapper>
                                 <ButtonLink href={'/product/'+product._id} $white>Read more</ButtonLink>
-                                <Button $primary onClick={() => addToCart()}>
-                                    <CartIcon />
-                                    Add to cart
-                                </Button>
+                                <div>{product.quantity ? (<Button $primary onClick={() => addToCart()}>Add to cart</Button>) : (<Soldout>SOLD</Soldout>)}</div>
                             </ButtonsWrapper>
                         </div> 
                     </Column>
                     <Column>
-                        <img src="https://ecommerce-project-nextjs.s3.amazonaws.com/1702699905202.png"/>
+                        <img src={product.images[0]}/>
                     </Column>
                 </ColumnsWrapper>
             </Center>

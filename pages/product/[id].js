@@ -108,6 +108,20 @@ const ImgLargeDiv = styled.div`
     }
 `;
 
+const Soldout = styled.span`
+    display: inline-flex;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin: 0;
+
+    text-decoration: none;
+    color: white;
+    background: red;
+    padding: 5px 8px;
+    border-radius: 5px;
+`;
+
+
 
 export default function ProductPage({product}){
 
@@ -198,7 +212,7 @@ export default function ProductPage({product}){
 
                         <PriceRow>
                             <Price>${product.price}</Price>
-                            <div><Button $primary onClick={() => addToCart()}><CartIcon /></Button></div>
+                            <div>{product.quantity ? (<Button $primary onClick={() => addToCart()}><CartIcon /></Button>) : (<Soldout>SOLD</Soldout>)}</div>
                         </PriceRow>
                     </div>
                 </ColWrapper>

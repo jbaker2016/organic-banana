@@ -2,6 +2,7 @@ import {mongooseConnect} from "@/lib/mongoose";
 const stripe = require('stripe')(process.env.STRIPE_SK);
 import {buffer} from 'micro';
 import {Order} from "@/models/Order";
+import { Product } from "@/models/Product";
 
 const endpointSecret = process.env.STRIPE_endpointSecret;
 
@@ -22,13 +23,25 @@ export default async function handler(req,res) {
   switch (event.type) {
     case 'checkout.session.completed':
       const data = event.data.object;
+
       const orderId = data.metadata.orderId;
+      const productIds = data.metadata.products.split(",");
       const paid = data.payment_status === 'paid';
+
+      console.log(productIds)
+
       if (orderId && paid) {
         await Order.findByIdAndUpdate(orderId,{
           paid:true,
         })
       }
+
+      productIds.forEach(async productId => {
+        await Product.findByIdAndUpdate(productId,{
+          quantity:  0,
+        })
+      });
+
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
@@ -41,5 +54,5 @@ export const config = {
   api: {bodyParser:false,}
 };
 
-// nifty-clear-adored-fair
-// acct_1OONXrLL1X6ic2KO
+// bright-thrift-cajole-lean
+// acct_1Lj5ADIUXXMmgk2a

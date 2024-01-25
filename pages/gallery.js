@@ -28,8 +28,6 @@ min-height: 100vh;
 
 export default function Gallery({products}) {
 
-
-
     return(
         <Container>
 

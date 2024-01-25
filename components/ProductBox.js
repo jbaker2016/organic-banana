@@ -58,7 +58,20 @@ const Price = styled.div`
     font-size: 1rem;
 `;
 
-export default function ProductBox({_id, title, description, price, images}){
+const Soldout = styled.span`
+    display: inline-flex;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin: 0;
+
+    text-decoration: none;
+    color: white;
+    background: red;
+    padding: 5px 8px;
+    border-radius: 5px;
+`;
+
+export default function ProductBox({_id, title, quantity, description, price, images}){
     const {addProduct} = useContext(CartContext);
     const [showPopup, setShowPopup] = useState(false);
     const url = '/product/'+_id;
@@ -84,7 +97,7 @@ export default function ProductBox({_id, title, description, price, images}){
                 <div>
                     <PriceRow>
                         <Price>${price}</Price>
-                        <div><Button $primary onClick={() => addToCart()}><CartIcon /></Button></div>
+                        <div>{quantity ? (<Button $primary onClick={() => addToCart()}><CartIcon /></Button>) : (<Soldout>SOLD</Soldout>)}</div>
                     </PriceRow>
                 </div>
             </WhiteBox>

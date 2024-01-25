@@ -15,7 +15,7 @@ export const ButtonStyle = css`
 
     svg{
         height: 16px;
-        margin-right: 5px;
+        
     }
 
     ${props => props.$plusminus && css`
