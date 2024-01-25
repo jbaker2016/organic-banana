@@ -75,10 +75,11 @@ export default function ProductBox2({_id, title, description, price, quantity, i
     const {addProduct} = useContext(CartContext);
     const [showPopup, setShowPopup] = useState(false);
     const url = '/product/'+_id;
-
+    const [popupMessage, setPopupMessage] = useState(0);
+    
     function addToCart() {
+        setPopupMessage(addProduct(_id));
         setShowPopup(true);
-        addProduct(_id);
     }
 
     useEffect(() => {
@@ -91,7 +92,7 @@ export default function ProductBox2({_id, title, description, price, quantity, i
     
     return(
         <ProductWrapper>
-            {showPopup && <Popup />}
+            {showPopup && <Popup popupMessage={popupMessage}/>}
             <WhiteBox>
                 <Title href={url}>{title}</Title>
                 <Link href={url}><ImageDiv><img src={images[0]} alt="" /></ImageDiv></Link>

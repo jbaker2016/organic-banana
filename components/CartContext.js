@@ -19,7 +19,13 @@ export function CartContextProvider({children}) {
     }, []);
 
     function addProduct(productId) {
-        setCartProducts(prev => [...prev, productId])
+        if (cartProducts.includes(productId)){
+            return 0
+        }
+        else {
+            setCartProducts(prev => [...prev, productId])
+            return 1
+        }
     }
 
     function removeProduct(productId) {

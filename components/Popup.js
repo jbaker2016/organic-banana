@@ -29,11 +29,13 @@ const PopupInner = styled.div`
     border-radius: 5px;
 `;
 
-function Popup(prop) {
+function Popup(popupMessage) {
+  console.log(popupMessage)
   return (
     <PopupDiv>
         <PopupInner>
-            Item Added to Cart
+            {popupMessage.popupMessage>0 ? "Item Added to Cart" : "Item Already in Cart"}
+            
         </PopupInner>
     </PopupDiv>
   );

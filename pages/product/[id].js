@@ -147,10 +147,12 @@ export default function ProductPage({product}){
             setImgIndex(imgIndex-1);
         }
     }
-
+    
+    const [popupMessage, setPopupMessage] = useState(0);
+    
     function addToCart() {
+        setPopupMessage(addProduct(product._id));
         setShowPopup(true);
-        addProduct(product._id);
     }
 
     useEffect(() => {
@@ -167,7 +169,7 @@ export default function ProductPage({product}){
         <Container>  
             
             {imgLarge && (<ImgButton onClick={() => setImgLarge(false)}><ImgLargeDiv><img src={product.images[imgIndex]} alt="" /></ImgLargeDiv></ImgButton>)}
-            {showPopup && <Popup />}
+            {showPopup && <Popup popupMessage={popupMessage}/>}
             <Header />
 
             <Center>

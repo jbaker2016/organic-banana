@@ -85,15 +85,11 @@ export default function Featured({product}) {
 
     const {addProduct} = useContext(CartContext);
     const [showPopup, setShowPopup] = useState(false);
-
-    function addFeaturedToCart() {
-        addProduct(product._id)
-    }
-    
+    const [popupMessage, setPopupMessage] = useState(0);
     
     function addToCart() {
+        setPopupMessage(addProduct(product._id));
         setShowPopup(true);
-        addProduct(product._id);
     }
 
     useEffect(() => {
@@ -106,7 +102,7 @@ export default function Featured({product}) {
     return(
         <Bg>
             <Center>
-                {showPopup && <Popup />}
+                {showPopup && <Popup popupMessage={popupMessage}/>}
                 <ColumnsWrapper>
                     <Column>
                         <div>

@@ -30,6 +30,8 @@ const Box = styled.div`
 
 const ProductInfoCell = styled.td`
 
+    width: 60%;
+
     img{
         max-width: 80px;
         max-height: 80px;
@@ -38,30 +40,25 @@ const ProductInfoCell = styled.td`
     }
 `;
 
-const QuantityDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
-`;
-const QuantityLabel = styled.span`
-    padding: 4px 5px;
-`;
-
 const CityHolder = styled.div`
     display: flex;
     gap: 5px;
 `;
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 `;
 
 const Main  = styled.div`
   flex: 1;
 `;
+
+const TotalRow  = styled.tr`
+  margin-top: 40px;
+`;
+
 
 export default function CartPage() {
     const {cartProducts, addProduct, removeProduct, clearCart} = useContext(CartContext);
@@ -94,11 +91,6 @@ export default function CartPage() {
             clearCart();
         }
     }, [])
-
-
-    function moreOfThisProduct(id) {
-        addProduct(id);
-    }
 
     function lessOfThisProduct(id) {
         removeProduct(id);
@@ -142,7 +134,7 @@ export default function CartPage() {
     return(
         <Container>
             <Header />
-                <Main>
+                `<Main>
                     <Center>
                         <ColumnsWrapper>
                             <Box>
@@ -155,38 +147,35 @@ export default function CartPage() {
                                         <thead>
                                             <tr>
                                                 <th>Item</th>
-                                                <th>Qty</th>
                                                 <th>Price</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {products.map(product => (
                                             <tr key={product._id}>
+
                                                 <ProductInfoCell>
                                                     <div>
                                                         <img src={product.images[0]} alt="" />
                                                     </div>
                                                     {product.title}
                                                 </ProductInfoCell>
-                                                <td>
-                                                    <QuantityDiv>
-                                                        <QuantityLabel>{cartProducts.filter(id => id === product._id).length}</QuantityLabel>
-                                                        <Button $primary $plusminus onClick={() => lessOfThisProduct(product._id)}>
-                                                            X
-                                                        </Button>
-                                                    </QuantityDiv>
-        
-                                                </td>
+
                                                 <td>${cartProducts.filter(id => id === product._id).length * product.price}.00</td>
+                                                <td>
+                                                    <Button $primary $plusminus onClick={() => lessOfThisProduct(product._id)}>
+                                                        ✖
+                                                    </Button>
+                                                </td>
                                             </tr>
                                                 ))}
 
-                                            <tr>
-                                                <td></td>
+                                            <TotalRow>
                                                 <td></td>
                                                 <td>${total}.00</td>
-                                                
-                                            </tr>
+                                                <td></td>
+                                            </TotalRow>
                                         </tbody>
                                     </Table>
                                     </>
@@ -214,7 +203,7 @@ export default function CartPage() {
 
                         </ColumnsWrapper>
                     </Center>
-                </Main>
+                </Main>`
                 
             <Footer />
             
