@@ -1,11 +1,10 @@
 import styled from "styled-components"
 import Center from "./Center"
-import Button from "./Button";
+import Button, { ButtonStyle } from "./Button";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import Popup from "./Popup";
 import Link from "next/link";
-import { ButtonStyle } from "./Button";
 
 const Bg = styled.div`
     background-color: #222;
@@ -81,12 +80,6 @@ const Soldout = styled.span`
     border-radius: 5px;
 `;
 
-const ButtonLink = styled(Link)`
-    ${ButtonStyle};
-    text-decoration: none;
-    font-size: 0.8rem;
-`;
-
 
 export default function Featured({product}) {
 
@@ -116,8 +109,8 @@ export default function Featured({product}) {
                             <Title>Featured: {product.title}</Title>
                             <Desc>{product.description}</Desc>
                             <ButtonsWrapper>
-                                <div>{product.quantity ? (<Button $primary onClick={() => addToCart()}>Add to cart</Button>) : (<Soldout>SOLD</Soldout>)}</div>
-                                <div><ButtonLink href={'/product/'+product._id} $white>Read more</ButtonLink></div>
+                                <Link href={'/product/'+product._id}><Button $white>Read more</Button></Link>
+                                {product.quantity ? (<Button $primary onClick={() => addToCart()}>Add to cart</Button>) : (<Soldout>SOLD</Soldout>)}
                             </ButtonsWrapper>
                         </div> 
                     </Column>
